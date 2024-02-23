@@ -3,6 +3,7 @@ import HomeItem from '../components/home/HomeItem';
 import StoryCircle from '../components/story/StoryCircle';
 import HomeRightPage from '../components/rightPage/HomeRightPage';
 import PostCard from '../components/post/PostCard';
+import CreatePost from '../components/post/CreatePost';
 
 const Home = () => {
     return (
@@ -21,6 +22,8 @@ const Home = () => {
                 <HomeRightPage/>
             </div>
         </div>
+
+        <CreatePost/>
     </div>
     );
 };

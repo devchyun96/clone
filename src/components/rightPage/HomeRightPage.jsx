@@ -10,11 +10,19 @@ const HomeRightPage = () => {
                         <div>
                             <img className='w-12 h-12 rounded-full' src="https://cdn.pixabay.com/photo/2017/10/30/11/06/cheetah-2902163_640.jpg" alt=''/>
                         </div>
-                        <div className='ml-3'>
-                            <div className='flex w-full'>
+                        <div className='flex w-full ml-3 justify-center'>
+                            <div className='w-[45%]'>
+                                <div className='flex justify-start'>
                                 <p className='text-sm'>이름</p>
+                                </div>
+                                <div className='flex justify-start'>
+                                <p className='text-sm opacity-70'>아이디</p>
+
+                                </div>
                             </div>
-                            <p className='text-sm opacity-70'>아이디</p>
+                            <div className='flex w-[55%] justify-end'>
+                                <button>전환</button>
+                            </div>
                         </div>
                     </div>
                     <div className='flex justify-between'>
