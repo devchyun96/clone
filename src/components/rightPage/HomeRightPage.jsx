@@ -3,7 +3,7 @@ import SuggetionCard from './SuggetionCard';
 
 const HomeRightPage = () => {
     return (
-        <div className='border'>
+        <div>
             <div>
                 <div>
                     <div className='flex mb-1 items-center'>

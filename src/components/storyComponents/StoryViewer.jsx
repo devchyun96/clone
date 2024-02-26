@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Progressbar from './Progressbar';
 
 const StoryViewerContainer=styled.div
 `
@@ -31,12 +32,21 @@ const StoryViewer = ({stories}) => {
             setActiveIndex(0);
         }
     }
-    
+    useEffect(()=>{
+        const interval=setInterval(()=> {handleNextStory()},2000)
+        return ()=>clearInterval(interval);
+
+    },[currentStoryIndex])
+
+
 
     return (
-        <div>
+        <div className='relative w-full'>
             <StoryViewerContainer>
                 <StoryImage src={stories?.[currentStoryIndex].image}/>
+                <div className='absolute top-0 flex w-full'>
+                    {stories.map((item,index)=> <Progressbar key={index} duration={2000} index={index} activeIndex={activeIndex} />)}
+                </div>
             </StoryViewerContainer>
         </div>
     );
