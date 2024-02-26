@@ -4,8 +4,10 @@ import StoryCircle from '../components/story/StoryCircle';
 import HomeRightPage from '../components/rightPage/HomeRightPage';
 import PostCard from '../components/post/PostCard';
 import CreatePost from '../components/post/CreatePost';
+import { useDisclosure } from '@chakra-ui/react';
 
 const Home = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
     return (
     <div>
         <div className='mt-10 flex w-[100%] justify-center'>
@@ -22,8 +24,6 @@ const Home = () => {
                 <HomeRightPage/>
             </div>
         </div>
-
-        <CreatePost/>
     </div>
     );
 };

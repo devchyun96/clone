@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import {FaBars} from "react-icons/fa"
 import { menu } from './SidebarConfig';
 import { useNavigate } from 'react-router-dom';
+import CreatePost from '../post/CreatePost';
+import { useDisclosure } from '@chakra-ui/react';
 
 const Sidebar = () => {
     const [activeMenu,setActiveMenu]=useState();
     const navigate=useNavigate();
+    const {isOpen,onClose,onOpen}=useDisclosure();
+
     const handleMenu= (title) =>{
         setActiveMenu(title);
         if(title==="프로필"){
@@ -13,6 +17,9 @@ const Sidebar = () => {
         }
         else if(title==="홈"){
             navigate("/");
+        }
+        else if(title==='만들기'){
+            onOpen();
         }
     }
     return (
@@ -37,6 +44,7 @@ const Sidebar = () => {
                 <p className='ml-5'>더보기</p>
                 </div>
             </div>
+            <CreatePost onClose={onClose} isOpen={isOpen} />
         </div>
     );
 };
