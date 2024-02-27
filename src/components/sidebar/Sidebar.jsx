@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {FaBars} from "react-icons/fa"
+import {FaBars, FaInstagram} from "react-icons/fa"
 import { menu } from './SidebarConfig';
 import { useNavigate } from 'react-router-dom';
 import CreatePost from '../post/CreatePost';
@@ -29,14 +29,23 @@ const Sidebar = () => {
         }else{
             setIsSearchVisible(false);
         }
+        if(title==='탐색'){
+            navigate("/explore");
+        }
     }
     return (
         <div className='sticky top-0 h-[100vh] flex'>
             <div className={`flex flex-col justify-between h-full ${activeMenu==="검색"?"px-2":"px-10"}`}>
                 {<div>
 
-                {activeMenu!=='검색' && <div className='pt-10'>
+                {activeMenu!=='검색' 
+                ? 
+                <div className='pt-10'>
                     <img className='w-40' src="https://i.imgur.com/zqpwkLQ.png" alt="" />
+                </div> 
+                :
+                <div className='mt-20'>
+                    <FaInstagram className='text-2xl'/>
                 </div>}
                 <div className='mt-10'>
                     {menu.map((item)=>                    
