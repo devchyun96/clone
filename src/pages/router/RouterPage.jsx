@@ -5,7 +5,6 @@ import Home from '../Home';
 import Profile from '../Profile';
 import Story from '../Story';
 import Login from '../login/Login';
-import ExplorePost from '../../components/explore/ExplorePost';
 import Explore from '../explore/Explore';
 
 const RouterPage = () => {

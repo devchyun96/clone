@@ -5,12 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import CreatePost from '../post/CreatePost';
 import { useDisclosure } from '@chakra-ui/react';
 import SearchComponents from '../searchComponents/SearchComponents';
+import AlarmComponent from '../alarmComponents/AlarmComponent';
+import { act } from 'react-dom/test-utils';
 
 const Sidebar = () => {
     const [activeMenu,setActiveMenu]=useState("");
     const navigate=useNavigate();
     const {isOpen,onClose,onOpen}=useDisclosure();
     const [isSearchVisible,setIsSearchVisible]=useState(false);
+    const [isAlarmVisible,setIsAlarmVisible]=useState(false);
 
     const handleMenu= (title) =>{
         setActiveMenu(title);
@@ -32,13 +35,18 @@ const Sidebar = () => {
         if(title==='탐색'){
             navigate("/explore");
         }
+        if(title==='알림'){
+            setIsAlarmVisible(true);
+        }else{
+            setIsAlarmVisible(false);
+        }
     }
     return (
         <div className='sticky top-0 h-[100vh] flex'>
-            <div className={`flex flex-col justify-between h-full ${activeMenu==="검색"?"px-2":"px-10"}`}>
+            <div className={`flex flex-col justify-between h-full ${(activeMenu==="검색" || activeMenu==='알림')?"px-10":"px-10"}`}>
                 {<div>
 
-                {activeMenu!=='검색' 
+                {(activeMenu!=='검색'  && activeMenu!=='알림')
                 ? 
                 <div className='pt-10'>
                     <img className='w-40' src="https://i.imgur.com/zqpwkLQ.png" alt="" />
@@ -52,18 +60,20 @@ const Sidebar = () => {
                     <div 
                     onClick={()=>handleMenu(item.title)} className='flex items-center mb-5 cursor-pointer text-lg'>
                         {activeMenu===item.title ?  item.activeIcon : item.icon}
-                        {activeMenu!=='검색' && <p className={`${activeMenu===item.title? "font-semibold": "font"}`}>{item.title}</p>}
+                        {(activeMenu!=='검색'&&activeMenu!=='알림') && <p className={`${activeMenu===item.title? "font-semibold": "font"}`}>{item.title}</p>}
+                        
                     </div>
                     )}
                 </div>
                 </div>}
                 <div className='flex items-center cursor-pointer pb-10'>
                 <FaBars className='text-2xl' />
-                {activeMenu!=='검색' && <p className='ml-5'>더보기</p>}
+                {(activeMenu!=='검색'&&activeMenu!=='알림') && <p className='ml-5'>더보기</p>}
                 </div>
             </div>
             <CreatePost onClose={onClose} isOpen={isOpen} />
             {isSearchVisible&&<SearchComponents/>}
+            {isAlarmVisible&&<AlarmComponent className='w-full'/>}
         </div>
     );
 };
